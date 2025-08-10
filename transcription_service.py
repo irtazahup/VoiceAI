@@ -5,8 +5,9 @@ import os
 import re
 
 # Set your AssemblyAI API key
-aai.settings.api_key = "37e88f4158d04c60bc975dad64be9b67"
-
+aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
+if not aai.settings.api_key:
+    raise RuntimeError("ASSEMBLYAI_API_KEY environment variable not set")
 class TranscriptionService:
     """Service for handling audio transcription using AssemblyAI"""
     
